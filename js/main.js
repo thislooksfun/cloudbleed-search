@@ -47,6 +47,11 @@ domains = [];
 allDomainsRange = [];
 
 $(document).ready(function() {
+  if (navigator.userAgent.match(/iPhone|iPad|iPod/i)) {
+    $('main').addClass('hidden');
+    $('#not-supported').removeClass('hidden');
+    return;
+  }
   $('#searchbox').on('keyup change paste', searchboxChanged);
   console.log('Loading domains...');
   return $.ajax({

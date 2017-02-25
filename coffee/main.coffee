@@ -30,6 +30,11 @@ String::matchAllWithIndexes = (match) ->
 domains = []
 allDomainsRange = []
 $(document).ready ->
+  if navigator.userAgent.match(/iPhone|iPad|iPod/i)
+    $('main').addClass 'hidden'
+    $('#not-supported').removeClass 'hidden'
+    return
+  
   $('#searchbox').on 'keyup change paste', searchboxChanged
   
   console.log 'Loading domains...'

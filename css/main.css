@@ -126,6 +126,15 @@ div#no-results {
   background-color: #383838;
 }
 
+/* line 145, ../sass/main.scss */
+div#not-supported {
+  position: absolute;
+  top: 30px;
+  padding: 20px;
+  text-align: center;
+  font-size: 30px;
+}
+
 /* Tablet/Desktop */
 
 /*# sourceMappingURL=main.css.map */
