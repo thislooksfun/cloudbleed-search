@@ -4,29 +4,25 @@ var allDomainsRange, domains, lastSearches, listURL, logSearch, search, searchbo
 listURL = 'https://raw.githubusercontent.com/pirate/sites-using-cloudflare/master/sorted_unique_cf.txt';
 
 String.prototype.matchAllWithIndexes = function(match) {
-  var arr, c, exact, i, indexes, j, k, len, matchArr;
-  matchArr = [];
-  if (Array.isArray(match)) {
-    matchArr = match;
-  } else if (typeof match === 'string') {
-    matchArr = match.split('');
+  var exact, i, indexes, j, k, ref, toMatch;
+  toMatch = [];
+  if (Array.isArray(match) || typeof match === 'string') {
+    toMatch = match;
   } else {
     throw new TypeError("Expected Array or String, got '" + (typeof match) + "'");
   }
-  if (matchArr.length > this.length) {
+  if (toMatch.length > this.length) {
     return {
       matches: false
     };
   }
-  arr = this.split('');
   exact = true;
   indexes = [];
   j = 0;
-  for (i = k = 0, len = arr.length; k < len; i = ++k) {
-    c = arr[i];
-    if (c === matchArr[j]) {
+  for (i = k = 0, ref = this.length; 0 <= ref ? k < ref : k > ref; i = 0 <= ref ? ++k : --k) {
+    if (this[i] === toMatch[j]) {
       indexes.push(i);
-      if (++j === matchArr.length) {
+      if (++j === toMatch.length) {
         return {
           matches: true,
           exact: exact,
@@ -183,7 +179,6 @@ updateList = function(results) {
   $('#results').toggleClass('hidden', exactCount + partialCount === 0);
   $('#results .section.exact').toggleClass('hidden', exactCount === 0);
   $('#results  .section.partial').toggleClass('hidden', partialCount === 0);
-  console.log("e." + exactCount + ";p." + partialCount + ";nq." + results.noQuery + ";t." + ((exactCount + partialCount > 0) || results.noQuery));
   $('#no-results').toggleClass('hidden', (exactCount + partialCount > 0) || results.noQuery);
   if (exactCount + partialCount === 0) {
     return;

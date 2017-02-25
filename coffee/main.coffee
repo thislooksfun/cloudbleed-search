@@ -2,25 +2,21 @@ listURL = 'https://raw.githubusercontent.com/pirate/sites-using-cloudflare/maste
 # listURL = 'sorted_unique_cf.txt'
 
 String::matchAllWithIndexes = (match) ->
-  matchArr = []
-  if Array.isArray(match)
-    matchArr = match
-  else if typeof match is 'string'
-    matchArr = match.split ''
+  toMatch = []
+  if Array.isArray(match) or typeof match is 'string'
+    toMatch = match
   else
     throw new TypeError("Expected Array or String, got '#{typeof match}'")
   
-  return {matches: false} if matchArr.length > @length
-  
-  arr = @split ''
+  return {matches: false} if toMatch.length > @length
   
   exact = true
   indexes = []
   j = 0
-  for c, i in arr
-    if c is matchArr[j]
+  for i in [0...@length]
+    if @[i] is toMatch[j]
       indexes.push i
-      if ++j is matchArr.length
+      if ++j is toMatch.length
         return {matches: true, exact: exact, indexes: indexes}
     else if j > 0
       exact = false
@@ -119,7 +115,6 @@ updateList = (results) ->
   $('#results').toggleClass 'hidden', exactCount + partialCount is 0
   $('#results .section.exact').toggleClass 'hidden', exactCount is 0
   $('#results  .section.partial').toggleClass 'hidden', partialCount is 0
-  console.log "e.#{exactCount};p.#{partialCount};nq.#{results.noQuery};t.#{(exactCount + partialCount > 0) or results.noQuery}" #noqa
   $('#no-results').toggleClass 'hidden', (exactCount + partialCount > 0) or results.noQuery
   
   # No point in continuing if there's nothing to display

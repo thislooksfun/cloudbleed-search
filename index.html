@@ -10,44 +10,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
   <body>
+    
+    <h3>CloudBleed Search</h3>
+    
     <main>
-      <div class="center">
-        <span id="http-label">http://</span>
-        <input id="searchbox" type="text" placeholder="website">
         
-        <ul id="results" class="hidden">
-          <div class="section exact">
-            <li class="title exact">Exact Matches</li>
-            
-            <div class="items">
-              <li>
-                <span class="http">http://</span><span class="main">google</span><span class="domain">.com</span>
-              </li>
-              <li>
-                <span class="http">http://</span><span class="main">google</span><span class="domain">.com</span>
-              </li>
-            </div>
-          </div>
+      <span id="http-label">http://</span>
+      <input id="searchbox" type="text" placeholder="website">
+      
+      <ul id="results" class="hidden">
+        <div class="section exact">
+          <li class="title exact">Exact Matches</li>
           
-          <div class="section partial">
-            <li class="title partial overbar">Partial Matches</li>
-            
-            <div class="items">
-              <li>
-                <span class="http">http://</span><span class="main">google</span><span class="domain">.com</span>
-              </li>
-              <li>
-                <span class="http">http://</span><span class="main">google</span><span class="domain">.com</span>
-              </li>
-            </div>
+          <div class="items">
+            <li>
+              <span class="http">http://</span><span class="main">google</span><span class="domain">.com</span>
+            </li>
+            <li>
+              <span class="http">http://</span><span class="main">google</span><span class="domain">.com</span>
+            </li>
           </div>
-        </ul>
-        
-        <div id="no-results" class="hidden">
-          <span>No results found</span>
         </div>
         
+        <div class="section partial">
+          <li class="title partial overbar">Partial Matches</li>
+          
+          <div class="items">
+            <li>
+              <span class="http">http://</span><span class="main">google</span><span class="domain">.com</span>
+            </li>
+            <li>
+              <span class="http">http://</span><span class="main">google</span><span class="domain">.com</span>
+            </li>
+          </div>
+        </div>
+      </ul>
+      
+      <div id="no-results" class="hidden">
+        <span>No results found</span>
       </div>
+      
     </main>
     
     <div id="not-supported" class="hidden">
