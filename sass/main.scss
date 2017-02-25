@@ -144,8 +144,9 @@ div#no-results {
 
 div#not-supported {
   position: absolute;
-  top: 30px;
-  padding: 20px;
+  top: 150px;
+  left: 20px;
+  width: calc(100% - 40px);
   text-align: center;
   font-size: 30px;
 }
