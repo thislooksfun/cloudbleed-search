@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>CloudBleed Site Search</title>
+    <script src="js/jquery-3.1.1.min.js" charset="utf-8"></script>
+    <script src="js/jquery.ajax-progress.js"></script>
+    <script src="js/main.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="css/main.css">
+  </head>
+  <body>
+    <main>
+      <div class="center">
+        <span id="http-label">http://</span>
+        <input id="searchbox" type="text" placeholder="website">
+        
+        <ul id="results">
+          <div class="section exact">
+            <li class="title exact">Exact Matches</li>
+            
+            <div class="items">
+              <li>
+                <span class="http">http://</span><span class="main">google</span><span class="domain">.com</span>
+              </li>
+              <li>
+                <span class="http">http://</span><span class="main">google</span><span class="domain">.com</span>
+              </li>
+            </div>
+          </div>
+          
+          <div class="section partial">
+            <li class="title partial overbar">Partial Matches</li>
+            
+            <div class="items">
+              <li>
+                <span class="http">http://</span><span class="main">google</span><span class="domain">.com</span>
+              </li>
+              <li>
+                <span class="http">http://</span><span class="main">google</span><span class="domain">.com</span>
+              </li>
+            </div>
+          </div>
+        </ul>
+        
+      </div>
+    </main>
+  </body>
+</html>
