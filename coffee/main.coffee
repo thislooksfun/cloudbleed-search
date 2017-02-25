@@ -1,5 +1,5 @@
-# listURL = 'https://raw.githubusercontent.com/pirate/sites-using-cloudflare/master/sorted_unique_cf.txt' #noqa
-listURL = 'sorted_unique_cf.txt'
+listURL = 'https://raw.githubusercontent.com/pirate/sites-using-cloudflare/master/sorted_unique_cf.txt' #noqa
+# listURL = 'sorted_unique_cf.txt'
 
 String::matchAllWithIndexes = (match) ->
   matchArr = []
