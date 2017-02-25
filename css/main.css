@@ -58,17 +58,18 @@ input#searchbox {
   background-color: #333;
   border: 0;
   border-bottom: 2px solid #ccc;
+  border-radius: 0;
   color: #ccc;
   font-size: 20px;
   font-family: sans-serif;
 }
-/* line 72, ../sass/main.scss */
+/* line 73, ../sass/main.scss */
 input#searchbox:focus {
   outline: none;
   border-color: #378ea1;
 }
 
-/* line 78, ../sass/main.scss */
+/* line 79, ../sass/main.scss */
 ul#results {
   position: absolute;
   top: 131px;
@@ -81,7 +82,7 @@ ul#results {
   background-color: #383838;
   list-style-type: none;
 }
-/* line 94, ../sass/main.scss */
+/* line 95, ../sass/main.scss */
 ul#results div.section li.title {
   position: relative;
   display: block;
@@ -90,11 +91,11 @@ ul#results div.section li.title {
   color: #0AC993;
   padding: 2px 0;
 }
-/* line 102, ../sass/main.scss */
+/* line 103, ../sass/main.scss */
 ul#results div.section li.title.overbar {
   padding-top: 10px;
 }
-/* line 105, ../sass/main.scss */
+/* line 106, ../sass/main.scss */
 ul#results div.section li.title.overbar:before {
   content: "";
   position: absolute;
@@ -105,12 +106,12 @@ ul#results div.section li.title.overbar:before {
   margin: 0 -87.5px;
   background-color: #a8a8a8;
 }
-/* line 119, ../sass/main.scss */
+/* line 120, ../sass/main.scss */
 ul#results div.section li span.http, ul#results div.section li span.domain {
   color: #999;
 }
 
-/* line 126, ../sass/main.scss */
+/* line 127, ../sass/main.scss */
 div#no-results {
   position: absolute;
   top: 131px;
