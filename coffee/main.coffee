@@ -2,25 +2,33 @@ listURL = 'https://raw.githubusercontent.com/pirate/sites-using-cloudflare/maste
 # listURL = 'sorted_unique_cf.txt'
 
 String::matchAllWithIndexes = (match) ->
-  toMatch = []
-  if Array.isArray(match) or typeof match is 'string'
-    toMatch = match
-  else
-    throw new TypeError("Expected Array or String, got '#{typeof match}'")
   
-  return {matches: false} if toMatch.length > @length
+  unless verifyMatchData(this, match)
+    return {matches: false}
+  
+  start = @indexOf(match[0])
+  if start is -1
+    return {matches: false}
+  if match.length is 1
+    return {matches: true, exact: true, indexes: [start]}
   
   exact = true
-  indexes = []
-  j = 0
-  for i in [0...@length]
-    if @[i] is toMatch[j]
+  indexes = [start]
+  j = 1
+  for i in [start...@length]
+    if @[i] is match[j]
       indexes.push i
-      if ++j is toMatch.length
+      if ++j is match.length
         return {matches: true, exact: exact, indexes: indexes}
     else if j > 0
       exact = false
   return {matches: false}
+
+verifyMatchData = (str, match) ->
+  unless Array.isArray(match) or typeof match is 'string'
+    throw new TypeError("Expected Array or String, got '#{typeof match}'")
+  return match.length > 0 and match.length <= str.length
+  
 
 
 domains = []
