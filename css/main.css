@@ -1,5 +1,10 @@
+/* line 4, ../sass/main.scss */
+.hidden {
+  display: none;
+}
+
 /* Default - Mobile */
-/* line 5, ../sass/main.scss */
+/* line 9, ../sass/main.scss */
 body {
   background-color: #333;
   color: #ccc;
@@ -7,7 +12,7 @@ body {
   font-size: 20px;
 }
 
-/* line 13, ../sass/main.scss */
+/* line 17, ../sass/main.scss */
 main {
   position: absolute;
   top: 0;
@@ -16,7 +21,7 @@ main {
   height: 100%;
 }
 
-/* line 21, ../sass/main.scss */
+/* line 25, ../sass/main.scss */
 span#http-label {
   position: absolute;
   top: 103px;
@@ -29,7 +34,7 @@ span#http-label {
   color: #888;
   z-index: 10;
 }
-/* line 38, ../sass/main.scss */
+/* line 42, ../sass/main.scss */
 span#http-label:after {
   content: "";
   position: absolute;
@@ -40,7 +45,7 @@ span#http-label:after {
   background-color: #999;
 }
 
-/* line 49, ../sass/main.scss */
+/* line 53, ../sass/main.scss */
 input#searchbox {
   position: absolute;
   top: 100px;
@@ -57,26 +62,26 @@ input#searchbox {
   font-size: 20px;
   font-family: sans-serif;
 }
-/* line 68, ../sass/main.scss */
+/* line 72, ../sass/main.scss */
 input#searchbox:focus {
   outline: none;
   border-color: #378ea1;
 }
 
-/* line 74, ../sass/main.scss */
+/* line 78, ../sass/main.scss */
 ul#results {
   position: absolute;
   top: 131px;
   left: 50%;
   height: auto;
-  width: 250px;
+  min-width: 250px;
   margin: 0 -153px;
   padding: 5px;
   border-top: 0;
   background-color: #383838;
   list-style-type: none;
 }
-/* line 90, ../sass/main.scss */
+/* line 94, ../sass/main.scss */
 ul#results div.section li.title {
   position: relative;
   display: block;
@@ -85,11 +90,11 @@ ul#results div.section li.title {
   color: #0AC993;
   padding: 2px 0;
 }
-/* line 98, ../sass/main.scss */
+/* line 102, ../sass/main.scss */
 ul#results div.section li.title.overbar {
   padding-top: 10px;
 }
-/* line 101, ../sass/main.scss */
+/* line 105, ../sass/main.scss */
 ul#results div.section li.title.overbar:before {
   content: "";
   position: absolute;
@@ -100,9 +105,24 @@ ul#results div.section li.title.overbar:before {
   margin: 0 -87.5px;
   background-color: #a8a8a8;
 }
-/* line 115, ../sass/main.scss */
+/* line 119, ../sass/main.scss */
 ul#results div.section li span.http, ul#results div.section li span.domain {
   color: #999;
+}
+
+/* line 126, ../sass/main.scss */
+div#no-results {
+  position: absolute;
+  top: 131px;
+  left: 50%;
+  height: auto;
+  min-width: 250px;
+  margin: 0 -153px;
+  padding: 5px;
+  border-top: 0;
+  text-align: center;
+  color: #0AC993;
+  background-color: #383838;
 }
 
 /* Tablet/Desktop */

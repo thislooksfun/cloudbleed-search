@@ -1,6 +1,10 @@
 // Variables
 $searchbox-top: 100px;
 
+.hidden {
+  display: none;
+}
+
 /* Default - Mobile */
 body {
   background-color: #333;
@@ -76,7 +80,7 @@ ul#results {
   top: 131px;
   left: 50%;
   height: auto;
-  width: 250px;
+  min-width: 250px;
   margin: 0 -153px;
   padding: 5px;
   
@@ -119,5 +123,22 @@ ul#results {
   }
 }
 
+div#no-results {
+  position: absolute;
+  top: 131px;
+  left: 50%;
+  height: auto;
+  min-width: 250px;
+  margin: 0 -153px;
+  padding: 5px;
+  
+  border-top: 0;
+  
+  text-align: center;
+  
+  color: #0AC993;
+  
+  background-color: #383838;
+}
 
 /* Tablet/Desktop */

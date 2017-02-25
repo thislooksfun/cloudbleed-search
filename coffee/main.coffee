@@ -1,5 +1,5 @@
-listURL = 'https://raw.githubusercontent.com/pirate/sites-using-cloudflare/master/sorted_unique_cf.txt' #noqa
-# listURL = 'sorted_unique_cf.txt' #noqa
+# listURL = 'https://raw.githubusercontent.com/pirate/sites-using-cloudflare/master/sorted_unique_cf.txt' #noqa
+listURL = 'sorted_unique_cf.txt'
 
 String::matchAllWithIndexes = (match) ->
   matchArr = []
@@ -10,9 +10,9 @@ String::matchAllWithIndexes = (match) ->
   else
     throw new TypeError("Expected Array or String, got '#{typeof match}'")
   
-  return {matches: false} if matchArr.length > this.length
+  return {matches: false} if matchArr.length > @length
   
-  arr = this.split ''
+  arr = @split ''
   
   exact = true
   indexes = []
@@ -46,26 +46,40 @@ $(document).ready ->
       allDomainsRange = [0...domains.length]
       console.log 'Done'
 
-
-
-lastSearch = ''
-lastResults = {exact: [], partial: [], all: []}
-searchboxChanged = (evnt) ->
+# Should be of form {query: String, results: Object}
+lastSearches = [{query: '', results: {exact: [], partial: [], all: []}}]
+searchboxChanged = (evnt) ->  #noqa
   search($(this).val())
-    .catch((e) -> console.log e)
-    .then (r) ->
-      lastResults = r
-      updateList(r)
+    .catch (e) -> console.log e
+    .then  (r) -> updateList(r)
 
 search = (query) ->
   return new Promise((resolve, reject) ->
+    
+    lastSearch = lastSearches[0]
+    
+    if query is ''
+      results = {exact: [], partial: [], all: [], noQuery: true}
+      logSearch query, results
+      resolve results
+      return
+    
     searchScope = []
-    if lastSearch.length > 0 and query.startsWith lastSearch
-      searchScope = lastResults.all
+    if lastSearch.query isnt '' and query.startsWith lastSearch.query
+      searchScope = lastSearch.results.all
     else
+      # See if the search has been done before, and reuse cached results
+      for si, i in lastSearches
+        if si.query is query
+          results = si.results
+          # Move search to top of list
+          lastSearches.unshift (lastSearches.splice i, 1)[0]
+          resolve results
+          return
+      
       searchScope = allDomainsRange
     
-    results = {exact: [], partial: [], all: []}
+    results = {exact: [], partial: [], all: [], noQuery: false}
     
     for i in searchScope
       match = domains[i].matchAllWithIndexes(query)
@@ -76,10 +90,15 @@ search = (query) ->
       else
         results.partial.push {domain: i, indexes: match.indexes}
     
-    lastSearch = query
+    logSearch query, results
     resolve results
     return #Block auto-return
   )
+
+logSearch = (query, results) ->
+  lastSearches.unshift {query: query, results: results}
+  if lastSearches.length > 50
+    lastSearches.splice 50
 
 updateList = (results) ->
   exactCount = results.exact.length
@@ -91,6 +110,15 @@ updateList = (results) ->
   if partialCount > 5
     premain = partialCount - 5
     partialCount = 5
+  
+  $('#results').toggleClass 'hidden', exactCount + partialCount is 0
+  $('#results .section.exact').toggleClass 'hidden', exactCount is 0
+  $('#results  .section.partial').toggleClass 'hidden', partialCount is 0
+  console.log "e.#{exactCount};p.#{partialCount};nq.#{results.noQuery};t.#{(exactCount + partialCount > 0) or results.noQuery}" #noqa
+  $('#no-results').toggleClass 'hidden', (exactCount + partialCount > 0) or results.noQuery
+  
+  # No point in continuing if there's nothing to display
+  return if exactCount + partialCount is 0
   
   exacts = ''
   for i in [0...exactCount]
